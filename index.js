@@ -1,6 +1,7 @@
 (function (lib, img, cjs, ss) {
 
 var p; // shortcut to reference prototypes
+lib.webFontTxtFilters = {}; 
 
 // library properties:
 lib.properties = {
@@ -9,8 +10,9 @@ lib.properties = {
 	fps: 30,
 	color: "#FFFFFF",
 	opacity: 1.00,
+	webfonts: {},
 	manifest: [
-		{src:"images/index_atlas_.png?1481659799228", id:"index_atlas_"}
+		{src:"images/index_atlas_.png", id:"index_atlas_"}
 	]
 };
 
@@ -21,6 +23,13 @@ lib.ssMetadata = [
 ];
 
 
+lib.webfontAvailable = function(family) { 
+	lib.properties.webfonts[family] = true;
+	var txtFilters = lib.webFontTxtFilters && lib.webFontTxtFilters[family] || [];
+	for(var f = 0; f < txtFilters.length; ++f) {
+		txtFilters[f].updateCache();
+	}
+};
 // symbols:
 
 
@@ -631,9 +640,10 @@ p.nominalBounds = new cjs.Rectangle(0,0,960,480);
 			threshold: 15
 		});
 		shakeEvent.start();
+		var unutar = this.unutarnjost;
 		window.addEventListener('shake', function () {
 			if (!UOpen) {
-				TweenLite.to(this.unutarnjost, 1, {
+				TweenLite.to(unutar, 1, {
 						x: "+=320",
 						ease: Power2.easeOut
 					})	}
