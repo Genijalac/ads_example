@@ -36,15 +36,12 @@ var shakeEvent = new Shake({
   threshold: 15
 });
 shakeEvent.start();
-window.addEventListener('shake', openInterior, false);
 
 //stop listening
 function stopShake() {
   shakeEvent.stop();
 }
-function openInterior() {
-  alert("shaked");
-}
+
 
 </script>
 <script src="index.js"></script>
