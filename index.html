@@ -30,6 +30,23 @@ window.addEventListener('load', checkInit);
 <script src="touch.js"></script>
 <script src="shake.js"></script>
 <script src="https://code.createjs.com/createjs-2015.11.26.min.js"></script>
+<script>
+
+var shakeEvent = new Shake({
+  threshold: 15
+});
+shakeEvent.start();
+window.addEventListener('shake', openInterior, false);
+
+//stop listening
+function stopShake() {
+  shakeEvent.stop();
+}
+function openInterior() {
+  alert("shaked");
+}
+
+</script>
 <script src="index.js"></script>
 
 
