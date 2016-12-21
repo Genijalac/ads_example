@@ -10,14 +10,14 @@ lib.properties = {
 	color: "#FFFFFF",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/index_atlas_.png?1481831180453", id:"index_atlas_"}
+		{src:"images/index_atlas_.png?1482342594342", id:"index_atlas_"}
 	]
 };
 
 
 
 lib.ssMetadata = [
-		{name:"index_atlas_", frames: [[322,336,320,480],[1406,0,320,480],[1728,0,320,480],[0,336,320,480],[762,0,320,480],[1084,0,320,480],[0,0,760,334],[690,336,30,50],[722,336,30,50],[644,336,44,56],[644,482,320,480],[966,482,320,480],[1610,482,320,480],[1288,482,320,480]]}
+		{name:"index_atlas_", frames: [[0,336,320,480],[322,336,320,480],[644,482,320,480],[762,0,320,480],[0,818,320,480],[322,818,320,480],[0,0,760,334],[644,394,30,50],[676,394,30,50],[644,336,44,56],[644,1446,320,480],[966,482,320,480],[1084,0,320,480],[644,964,320,480],[0,1300,320,480],[966,964,320,480],[322,1300,320,480]]}
 ];
 
 
@@ -123,6 +123,39 @@ lib.ssMetadata = [
 
 
 
+(lib.text1 = function() {
+	this.spriteSheet = ss["index_atlas_"];
+	this.gotoAndStop(14);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.text2 = function() {
+	this.spriteSheet = ss["index_atlas_"];
+	this.gotoAndStop(15);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.text3 = function() {
+	this.spriteSheet = ss["index_atlas_"];
+	this.gotoAndStop(16);
+}).prototype = p = new cjs.Sprite();
+
+
+
+(lib.Weel = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.instance = new lib.text1();
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,320,480);
+
+
 (lib.unutarnjost_back = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
@@ -217,6 +250,30 @@ p.nominalBounds = new cjs.Rectangle(-160,-240,320,480);
 
 }).prototype = p = new cjs.MovieClip();
 p.nominalBounds = new cjs.Rectangle(0,0,28.2,35.9);
+
+
+(lib.RadioWIFI = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.instance = new lib.text3();
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,320,480);
+
+
+(lib.Navigation = function(mode,startPosition,loop) {
+	this.initialize(mode,startPosition,loop,{});
+
+	// Layer 1
+	this.instance = new lib.text2();
+
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
+
+}).prototype = p = new cjs.MovieClip();
+p.nominalBounds = new cjs.Rectangle(0,0,320,480);
 
 
 (lib.Gallery_back = function(mode,startPosition,loop) {
@@ -322,16 +379,136 @@ p.nominalBounds = null;
 (lib.unutarnjost = function(mode,startPosition,loop) {
 	this.initialize(mode,startPosition,loop,{});
 
-	// Layer 1
+	// timeline functions:
+	this.frame_0 = function() {
+		/* Mouse Click Event
+		Clicking on the specified symbol instance executes a function in which you can add your own custom code.
+		
+		Instructions:
+		1. Add your custom code on a new line after the line that says "// Start your custom code" below.
+		The code will execute when the symbol instance is clicked.
+		*/
+		var opened = false;
+		this.openWeel.addEventListener("click", fl_MouseClickHandler_14.bind(this));
+		
+		function fl_MouseClickHandler_14()
+		{
+			if(!opened){
+					TweenLite.to(this.Weel,1, {
+					y: "-=480",
+				ease: Power2.easeOut
+				})
+				opened = true;
+			}
+		}
+		this.Weel.addEventListener("click", fl_MouseClickHandler_15.bind(this));
+		
+		function fl_MouseClickHandler_15()
+		{
+			if(opened){
+					TweenLite.to(this.Weel,1, {
+					y: "+=480",
+				ease: Power2.easeIn
+				})
+				opened = false;
+			}
+		}
+		
+		//
+		
+		this.openNavigation.addEventListener("click", fl_MouseClickHandler_16.bind(this));
+		
+		function fl_MouseClickHandler_16()
+		{
+			if(!opened){
+					TweenLite.to(this.Navigation,1, {
+					y: "-=480",
+				ease: Power2.easeOut
+				})
+				opened = true;
+			}
+		}
+		this.Navigation.addEventListener("click", fl_MouseClickHandler_17.bind(this));
+		
+		function fl_MouseClickHandler_17()
+		{
+			if(opened){
+					TweenLite.to(this.Navigation,1, {
+					y: "+=480",
+				ease: Power2.easeIn
+				})
+				opened = false;
+			}
+		}
+		
+		
+		///
+		this.openRadio.addEventListener("click", fl_MouseClickHandler_18.bind(this));
+		
+		function fl_MouseClickHandler_18()
+		{
+			if(!opened){
+					TweenLite.to(this.Radio,1, {
+					y: "-=480",
+				ease: Power2.easeOut
+				})
+				opened = true;
+			}
+		}
+		this.Radio.addEventListener("click", fl_MouseClickHandler_19.bind(this));
+		
+		function fl_MouseClickHandler_19()
+		{
+			if(opened){
+					TweenLite.to(this.Radio,1, {
+					y: "+=480",
+				ease: Power2.easeIn
+				})
+				opened = false;
+			}
+		}
+	}
+
+	// actions tween:
+	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
+
+	// Text
+	this.Weel = new lib.Weel();
+	this.Weel.setTransform(160,720,1,1,0,0,0,160,240);
+
+	this.Navigation = new lib.Navigation();
+	this.Navigation.setTransform(160,720,1,1,0,0,0,160,240);
+
+	this.Radio = new lib.RadioWIFI();
+	this.Radio.setTransform(160,720,1,1,0,0,0,160,240);
+
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.Radio},{t:this.Navigation},{t:this.Weel}]}).wait(1));
+
+	// Buttons
+	this.openNavigation = new lib.Btn1();
+	this.openNavigation.setTransform(173.5,147.6);
+	new cjs.ButtonHelper(this.openNavigation, 0, 1, 2, false, new lib.Btn1(), 3);
+
+	this.openRadio = new lib.Btn1();
+	this.openRadio.setTransform(173.5,223.7);
+	new cjs.ButtonHelper(this.openRadio, 0, 1, 2, false, new lib.Btn1(), 3);
+
+	this.openWeel = new lib.Btn1();
+	this.openWeel.setTransform(36.6,197.5);
+	new cjs.ButtonHelper(this.openWeel, 0, 1, 2, false, new lib.Btn1(), 3);
+
 	this.btn = new lib.unutarnjost_back();
 	this.btn.setTransform(15,427,1,1,0,0,0,15,25);
 
+	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.btn},{t:this.openWeel},{t:this.openRadio},{t:this.openNavigation}]}).wait(1));
+
+	// Bg
 	this.instance = new lib.notranjost();
 
-	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance},{t:this.btn}]}).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance).wait(1));
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(0,0,320,480);
+p.nominalBounds = new cjs.Rectangle(0,0,320,960);
 
 
 (lib.form2 = function(mode,startPosition,loop) {
